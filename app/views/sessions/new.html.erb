@@ -1,0 +1,55 @@
+
+
+<!Doctype Html>
+<html>
+<head>
+	<title>Login Here</title>
+
+	<style>
+
+
+	#wrapper
+	{
+		width: 400px;
+		height: 400px;
+	}
+
+	#sessionfrt
+	{
+		padding-left: 30px;
+		color: gray;
+		padding-top: 30px;
+	}
+
+	#sessionfrt h1
+	{
+		color: gray;
+	}
+	</style>
+</head>
+
+
+
+<body>
+
+	<div id = "wrapper">
+
+       <% if flash[:alert] %>
+         <%= flash[:alert] %>
+       <% end %>
+
+	
+       <div id ="sessionfrt">
+			<h1>User Login</h1>
+
+			<%= simple_form_for @user, url: sessions_path do |f| %>
+				<%= f.input :email %>
+				<%= f.input :password %>
+				<br>
+				<%= f.submit 'Log In' %>
+			<% end %>
+		</div> 
+	</div>	
+
+</body>
+</html>

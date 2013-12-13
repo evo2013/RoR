@@ -1,0 +1,97 @@
+
+<!Doctype Html>
+<html>
+<head>
+	<title>Celebrity360 User Registration</title>
+
+	<style>
+
+
+	#wrapper
+	{
+		width: 1000px;
+		height: 700px;
+	}
+
+	#frontend
+	{
+		padding-left: 30px;
+		display: inline-block;
+		width: 300px;
+		height: 400px;
+		vertical-align: top;
+		color: gray;
+	}
+	#rtside
+	{
+		padding-top: 80px;
+		display: inline-block;
+		width: 600px;
+		height: 400px;
+		vertical-align: top;
+	}
+
+	#rtside p
+	{
+		font-size: 24px;
+		color: gray;
+	}
+
+	#rtside h2
+	{
+		color: red;
+	}
+
+	#rtside h3
+	{
+		color: gray;
+	}
+	#rtside ul li
+	{
+		font-size: 18px;
+		color: gray;
+	}
+
+	</style>
+</head>
+
+
+<body>
+	<div id='wrapper'>
+
+		<div id ='frontend'>
+			<h1>Register Here</h1>
+
+			<!-- <div class="span3"></div> -->
+
+			<%= simple_form_for @user, :html => { :class => "span3" } do |f| %>
+				<%= f.input :fname, label: 'First Name' %>
+				<%= f.input :lname, label: 'Last Name' %>
+				<%= f.input :email, label: 'Email' %>
+				<%= f.input :password, label: 'Password' %>
+				<%= f.input :password_confirmation, label: 'Confirm Password' %>
+				<br>
+				<%= f.submit 'Create Account!', class: "btn btn-primary" %>
+			<% end %>
+		</div>
+
+		<div id ='rtside'>
+			<h2> Celebrity360 - LOOK NO FURTHER!</h2>
+			<h3>Favorite CELEBRITIES on Social Media & Search!</h3>
+			<ul>
+				<li>Trending Videos</li>
+				<li>Latest Tweets</li>
+				<li>Facebook Posts</li>
+				<li> Personal Instagrams </li>
+				<li>Newest Photo Galleries</li>
+			</ul>	
+		</div>
+
+	</div>
+
+
+
+<!--  -->
+
+</body>
+</html>

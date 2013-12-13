@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  celebrity_id: 1
+  url: MyString
+  title: MyString
+  content: MyString
+  celebrity_id: 
+
+two:
+  celebrity_id: 1
+  url: MyString
+  title: MyString
+  content: MyString
+  celebrity_id: 

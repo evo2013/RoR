@@ -1,0 +1,21 @@
+<h1>Welcome to Celebrity360 <%= @user.fname %>!</h1>
+
+<h4>Your User Account Information is listed Below. Note: we do not display passwords.</h4>
+
+
+<table border="1" cellpadding="10">
+<tr>
+  <td>First Name: </td>
+  <td><%= @user.fname %></td>
+</tr>   
+<tr>
+  <td>Last Name: </td>
+  <td><%= @user.lname %></td>
+</tr>
+<tr>
+  <td>Email: </td>
+  <td><%= @user.email %></td>
+</tr>
+
+</table>
+

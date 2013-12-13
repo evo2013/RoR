@@ -1,0 +1,157 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+	  <meta charset="utf-8">
+	  <title>Celebrity 360 Homepage</title>
+
+	  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	  <link rel="stylesheet" href="/resources/demos/style.css">
+	  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-instagram/0.2.2/jquery.instagram.min.js"></script>
+	  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
+			 <script>
+				  $(function() {
+				    $( "#tabs" ).tabs();
+				  });
+			 </script>
+
+			<script language="Javascript" type="text/javascript">
+				google.load('search', '1');
+
+				function OnLoad()
+				{
+				  var searchControl = new google.search.SearchControl();
+				  searchControl.addSearcher(new google.search.ImageSearch());
+				  searchControl.draw(document.getElementById("photos"));
+				  searchControl.execute("<%=@celeb%>");
+				}
+				google.setOnLoadCallback(OnLoad);
+			</script>
+
+			<script language="Javascript" type="text/javascript">
+				google.load('search', '1');
+
+				function OnNews()
+				{
+				  var searchControl = new google.search.SearchControl();
+				  searchControl.addSearcher(new google.search.NewsSearch());
+				  searchControl.draw(document.getElementById("news"));
+				  searchControl.execute("<%=@celeb%>");
+				}
+				google.setOnLoadCallback(OnNews);
+			</script>
+
+			<script language="Javascript" type="text/javascript">
+				google.load('search', '1');
+
+				function OnVideos()
+				{
+				  var searchControl = new google.search.SearchControl();
+				  searchControl.addSearcher(new google.search.VideoSearch());
+				  searchControl.draw(document.getElementById("videos"));
+				  searchControl.execute("<%=@celeb%>");
+				}
+				google.setOnLoadCallback(OnVideos);
+			</script>
+
+			<style type="text/css">
+				#instagram, #photos, #news, #videos
+				{
+					height:500px;
+					overflow:auto;
+				}
+
+				#instagram .instagram-placeholder img
+				{
+					width:275px;
+					height:275px;
+				}
+			</style>
+
+	</head>
+
+
+	<body>	
+
+		<a href="http://localhost:3000/users/index/Taylor%20Swift" ><button type="button">Taylor Swift </button></a>
+		<a href="http://localhost:3000/users/index/tim%20mcgraw"><button type="button">Tim McGraw</button></a>
+		<a href="http://localhost:3000/users/index/faith%20hill"><button type="button">Faith Hill </button></a>	
+		
+
+		<h2> Welcome <%= @user.fname %>, </h2>
+		<h2> Your Current Celebrity360 is: <%= @celeb %></h2>
+
+		<%= button_to "Log Out", session_path(@user), method: :delete %> 
+
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Recent Photos</a></li>
+				<li><a href="#tabs-2">Facebook</a></li>
+				<li><a href="#tabs-3">Instagram</a></li>
+				<li><a href="#tabs-4">Twitter</a></li>
+				<li><a href="#tabs-5">Latest News</a></li>
+				<li><a href="#tabs-6">YouTube Videos</a></li>
+
+			</ul>
+
+			<div id="tabs-1" class="tabs">
+				<div id="photos"></div>
+			</div>
+
+
+			<div id="tabs-2" class="tabs">
+				<div id="fb-root"></div> 
+
+				<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
+				</script>
+
+				<div class="fb-post" 
+				data-href="<%=@fbpage%>" data-width="550">
+					<div class="fb-xfbml-parse-ignore">
+						<a href="<%=@fbpage%>" target="_blank"> Celebrity Post</a> <!-- by <a href="https://www.facebook.com/TaylorSwift">Taylor Swift</a>. -->
+					</div>
+				</div>
+			</div>	
+
+
+			<div id="tabs-3" class="tabs">
+				<div id="instagram"></div>
+			</div>
+
+			<div id="tabs-4" class="tabs">
+				<div id="tweets"></div>
+				<a class="twitter-timeline" href="<%=@tweetpage%>" 
+				data-widget-id="<%= @tweetid %>" >Celebrity Tweets</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+				</script>
+			</div>
+
+			<div id="tabs-5" class="tabs">
+				<div id="news"></div>
+			</div>
+
+			<div id="tabs-6" class="tabs">
+				<div id="videos"></div>
+			</div>
+
+
+			<script type="text/javascript">
+				$("#instagram").instagram({
+					userId: '<%=@instagramid%>' ,
+					accessToken: '764482366.d2f6c4e.bc8e75e105c54edb91007ca28a585ef0',
+					image_size:'standard_resolution'
+			    });
+			</script>
+
+		
+		</div>
+		
+
+
+		
+		
+	</body>
+</html>
